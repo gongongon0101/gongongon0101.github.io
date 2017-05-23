@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="utf-8">
+    <title>グラブルボイス探し</title>
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+    <script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../js/test.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>グラブルボイス探し</h1>
+    </header>
+    <form id="form1">     <!--form要素に id名を付けました-->
+		<ul id = "test">
+			<li>
+				<label><span>ID</span><input type="text" id="id" class="txtfiled" value="3040038000" placeholder="3040038000"></label>
+				<br>※キャラクターの番号を指定してください
+			</li>
+			<li>
+				<label><span>ボイス番号</span><input type="text" id="number" value="001" class="txtfiled" placeholder="001" maxlength="3"></label>
+				<button type="button" id="add" onclick="append()">追加</button>
+				<br>※0埋め3桁の数字を指定してください。
+			</li>
+			<li>
+				<button type="button" id="add" onclick="appendList()">一括追加（001～400くらい）</button>
+				<button type="button" id="add" onclick="delList()">一括削除</button>
+				<br>※指定したIDのボイスを一括で追加したり削除します。
+			</li>
+		</ul>
+	</form>
+  </body>
+</html>
