@@ -3,13 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | New Unity Project</title>
+    <title>マキラ走</title>
     <script src="Build/UnityLoader.js"></script>
+    <script src="windowsResize.js"></script>
     <script>
       var gameInstance = UnityLoader.instantiate("gameContainer", "Build/build.json");
     </script>
   </head>
   <body>
+  	<h1><b>マキラ走</b></h1>
+  	※音がなるので気を付けてください。
     <div id="gameContainer" style="width: 960px; height: 600px; margin: auto"></div>
+	<ul>
+		<li>
+			スペースキーでジャンプして、壁を避けよう！
+		</li>
+	</ul>
+	<a href="javascript:history.back()">[戻る]</a>
   </body>
 </html>
