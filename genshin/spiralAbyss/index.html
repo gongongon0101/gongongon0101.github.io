@@ -1,11 +1,84 @@
-<!doctype html>
-<html>
-	<head>
-		<title>螺旋TA時間計測ツール</title>
-	</head>
-	<body>
-		準備中、HoYoLABの時間からTA時間が図れる感じのにしたい<br>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>螺旋TA時間計測ツール</title>
+<script src="../../js/jquery-3.2.1.min.js"></script>
+<script>
+$( function() {
 
-		<br><a href="https://gongongon0101.github.io/">[戻る]</a>
-	</body>
+$("#button").click(
+function(){
+	$("#span1").text("データ取得中です");
+	$("#button").prop("disabled", true);
+
+	// 1.$.ajaxメソッドで通信を行います。
+	//  20行目のdataは、フォームの内容をserialize()している
+	//  →serialize()の内容は、cs1=custom1&cs2=custom2
+	$.ajax({	
+		url:"https://script.google.com/macros/s/AKfycbywIxxq1TjsoRNpX_CBqKbSG0raPNcXNSQuvUClb7SMFLbPsAeo4lPUvMa3vgZX5VvO/exec", // 通信先のURL
+//		type:"POST",		// 使用するHTTPメソッド
+		type:"GET",		// 使用するHTTPメソッド
+		data:$("#form1").serialize(), // 送信するデータ
+		dataType:"json", // 応答のデータの種類 
+						// (xml/html/script/json/jsonp/text)
+		timespan:1000 		// 通信のタイムアウトの設定(ミリ秒)
+
+		// 2. doneは、通信に成功した時に実行される
+		//  引数のdata1は、通信で取得したデータ
+		//  引数のtextStatusは、通信結果のステータス
+		//  引数のjqXHRは、XMLHttpRequestオブジェクト
+		}).done(function(data1,textStatus,jqXHR) {
+				$("#span1").text("通信成功"); //例：200
+
+				// 3. キーを指定して値を表示 
+				$("#floor12_1").text(data1["floor12_1"]);
+				$("#floor12_2").text(data1["floor12_2"]);
+				$("#floor12_3").text(data1["floor12_3"]);
+				$("#resutlTIme").text(data1["resutlTIme"]);
+				$('p').data('text',data1["resutlTIme"]);
+
+				// 4. JavaScriptオブジェクトをJSONに変換
+				console.log(JSON.stringify(data1)); //コンソールにJSONが表示される
+
+				// 5.JSONをJavaScriptオブジェクトにし、
+				// キーを指定して値(httpbin.org)を表示
+				//var data3 = JSON.parse(data2);
+				//$("#span5").text(data3["headers"]["Host"]);
+
+		// 6. failは、通信に失敗した時に実行される
+		}).fail(function(jqXHR, textStatus, errorThrown ) {
+				$("#span1").text("通信に失敗しました。"); //例：404
+
+		// 7. alwaysは、成功/失敗に関わらず実行される
+		}).always(function(){
+				//$("#span6").text("complete");
+				$("#button").prop("disabled", false);
+	});
+});
+});
+</script>
+</head>
+<body >
+<p><span id="span1">通信結果がここに表示されます。</span></p>
+<p><span id="floor12_1">12層1問の結果がここに表示されます。</span></p>
+<p><span id="floor12_2">12層2問の結果がここに表示されます。</span></p>
+<p><span id="floor12_3">12層3問の結果がここに表示されます。</span></p>
+<p><b><span id="resutlTIme">12層1問前半入場から12層3問後半入場の時間が表示されます。</span></b></p>
+
+<p>原神のID（UID）を入力してボタンを押すとHoYoLABから螺旋１２層の時間を取得してきます。</p>
+
+<form id="form1">
+    <p>
+      <label>原神ID <input type="text" name="genshin_ID" value="" maxlength="9"></label>（例：800163017）
+    </p>
+    <input type="button" id="button" value="時間取得">
+</form>
+
+<p>
+  <a id="tweet" href="https://twitter.com/share" class="twitter-share-button" data-url="https://gongongon0101.github.io/genshin/spiralAbyss/index.html" data-text="螺旋TA時間計測ツール" data-via="gongongon0101" data-hashtags="螺旋TA時間計測ツール">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</p>
+<p><a href="../index.html">[戻る]</a></p>
+
+</body>
 </html>
