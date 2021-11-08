@@ -38,7 +38,7 @@ function(){
 				$("#resutlTIme").text(data1["resutlTIme"]);
 
 
-				var resultTime = $("#resutlTIme").text() + "(UID:" + $("#genshin_ID").val() +") " + "https://gongongon0101.github.io/genshin/spiralAbyss/index.html";
+				var resultTime = $("#resutlTIme").text() + "(UID:" + $("#genshin_ID").val() +") ";
 				var widget = $("#twitter-widget-0");
 				var src = $("#twitter-widget-0").attr("src");
 				var url = src.replace(/\&text=.*\&/, "&text=" + encodeURIComponent(resultTime) + "&");
