@@ -36,7 +36,14 @@ function(){
 				$("#floor12_2").text(data1["floor12_2"]);
 				$("#floor12_3").text(data1["floor12_3"]);
 				$("#resutlTIme").text(data1["resutlTIme"]);
-				$('p').data('text',data1["resutlTIme"]);
+
+
+				var resultTime = $("#resutlTIme").text() + "(UID:" + $("#genshin_ID").val() +") " + "https://gongongon0101.github.io/genshin/spiralAbyss/index.html";
+				var widget = $("#twitter-widget-0");
+				var src = $("#twitter-widget-0").attr("src");
+				var url = src.replace(/\&text=.*\&/, "&text=" + encodeURIComponent(resultTime) + "&");
+				$("#twitter-widget-0").attr("src",url);
+				$("#box").html("").append(widget);
 
 				// 4. JavaScriptオブジェクトをJSONに変換
 				console.log(JSON.stringify(data1)); //コンソールにJSONが表示される
@@ -70,14 +77,16 @@ function(){
 
 <form id="form1">
     <p>
-      <label>原神ID <input type="text" name="genshin_ID" value="" maxlength="9"></label>（例：800163017）
+      <label>原神ID <input type="text" id="genshin_ID" name="genshin_ID" value="" maxlength="9"></label>（例：800163017）
     </p>
     <input type="button" id="button" value="時間取得">
 </form>
-
 <p>
-  <a id="tweet" href="https://twitter.com/share" class="twitter-share-button" data-url="https://gongongon0101.github.io/genshin/spiralAbyss/index.html" data-text="螺旋TA時間計測ツール" data-via="gongongon0101" data-hashtags="螺旋TA時間計測ツール">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <div id="box">
+    <a id="tweet" href="https://twitter.com/share" class="twitter-share-button" data-url="https://gongongon0101.github.io/genshin/spiralAbyss/index.html" data-text="螺旋TA時間計測ツール" data-via="gongongon0101" data-hashtags="螺旋TA時間計測ツール">Tweet</a>
+  </div>
 </p>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <p><a href="../index.html">[戻る]</a></p>
 
 </body>
